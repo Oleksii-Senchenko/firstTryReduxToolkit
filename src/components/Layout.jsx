@@ -2,7 +2,6 @@ import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import UserMenu from "./UserMenu";
 import { useSelector } from "react-redux";
-// import LoginForm from "./LoginForm";
 
 const Layout = () => {
   const isLoggedIn = useSelector((state) => state.userData.isLoggedIn);
@@ -17,11 +16,12 @@ const Layout = () => {
       }}
     >
       <nav>
-        {isLoggedIn && <Link to="login">log in</Link>}
+        {!isLoggedIn && <Link to="login">log in</Link>}
+
+        <br />
         {isLoggedIn && <Link to="dashboard">dashboard</Link>}
       </nav>
       {isLoggedIn && <UserMenu />}
-      {/* {isLoggedIn ? <UserMenu /> : <LoginForm />} */}
       <Outlet />
     </header>
   );
